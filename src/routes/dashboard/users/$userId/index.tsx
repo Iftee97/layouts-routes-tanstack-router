@@ -4,7 +4,7 @@ import { ArrowLeft, Building2, Globe, Mail, MapPin, Phone } from "lucide-react";
 
 import { fetchPostsByUser, fetchUser } from "#/lib/jsonplaceholder";
 
-export const Route = createFileRoute("/dashboard/users/$userId")({
+export const Route = createFileRoute("/dashboard/users/$userId/")({
     loader: async ({ params }) => {
         const userId = Number(params.userId);
         const [user, posts] = await Promise.all([fetchUser(userId), fetchPostsByUser(userId)]);
@@ -63,8 +63,8 @@ function RouteComponent() {
                 {posts.map((post) => (
                     <Link
                         key={post.id}
-                        to="/dashboard/posts/$postId"
-                        params={{ postId: String(post.id) }}
+                        to="/dashboard/users/$userId/posts/$postId"
+                        params={{ userId: String(user.id), postId: String(post.id) }}
                         className="group block rounded-xl border border-neutral-200 bg-white p-5 transition-colors hover:border-neutral-400"
                     >
                         <h3 className="font-semibold capitalize text-neutral-900 group-hover:underline">
