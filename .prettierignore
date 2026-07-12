@@ -1,0 +1,5 @@
+# Ignore Markdown files
+*.md
+
+# Optionally ignore other files too
+**/*.md 
