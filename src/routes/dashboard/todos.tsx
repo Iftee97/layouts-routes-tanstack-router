@@ -1,11 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Check } from "lucide-react";
 
+import Skeleton from "#/components/skeleton";
+
 import { fetchTodos } from "#/lib/jsonplaceholder";
 
 export const Route = createFileRoute("/dashboard/todos")({
     loader: () => fetchTodos(),
     component: RouteComponent,
+    pendingComponent: PendingComponent,
 });
 
 function RouteComponent() {
@@ -39,6 +42,26 @@ function RouteComponent() {
                         >
                             {todo.title}
                         </span>
+                    </li>
+                ))}
+            </ul>
+        </div>
+    );
+}
+
+function PendingComponent() {
+    return (
+        <div>
+            <div className="mb-6 flex items-baseline gap-3">
+                <Skeleton className="h-8 w-32" />
+                <Skeleton className="h-4 w-28" />
+            </div>
+
+            <ul className="divide-y divide-neutral-200 overflow-hidden rounded-xl border border-neutral-200 bg-white">
+                {Array.from({ length: 8 }).map((_, i) => (
+                    <li key={i} className="flex items-center gap-3 px-4 py-3">
+                        <Skeleton className="size-5 shrink-0 rounded-md" />
+                        <Skeleton className="h-4 w-2/3" />
                     </li>
                 ))}
             </ul>

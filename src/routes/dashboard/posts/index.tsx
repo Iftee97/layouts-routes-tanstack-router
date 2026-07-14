@@ -1,10 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
+import Skeleton from "#/components/skeleton";
+
 import { fetchPosts } from "#/lib/jsonplaceholder";
 
 export const Route = createFileRoute("/dashboard/posts/")({
     loader: () => fetchPosts(),
     component: RouteComponent,
+    pendingComponent: PendingComponent,
 });
 
 function RouteComponent() {
@@ -28,6 +31,26 @@ function RouteComponent() {
                         </h2>
                         <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-neutral-600">{post.body}</p>
                     </Link>
+                ))}
+            </div>
+        </div>
+    );
+}
+
+function PendingComponent() {
+    return (
+        <div>
+            <Skeleton className="mb-6 h-8 w-40" />
+
+            <div className="grid gap-4 sm:grid-cols-2">
+                {Array.from({ length: 6 }).map((_, i) => (
+                    <div key={i} className="rounded-xl border border-neutral-200 bg-white p-5">
+                        <Skeleton className="h-3 w-16" />
+                        <Skeleton className="mt-2 h-5 w-3/4" />
+                        <Skeleton className="mt-3 h-4 w-full" />
+                        <Skeleton className="mt-2 h-4 w-full" />
+                        <Skeleton className="mt-2 h-4 w-2/3" />
+                    </div>
                 ))}
             </div>
         </div>

@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { ArrowLeft } from "lucide-react";
 import PostDetail from "#/components/post-detail";
+import PostDetailSkeleton from "#/components/post-detail-skeleton";
 
 import { fetchPost, fetchPostComments, fetchUser } from "#/lib/jsonplaceholder";
 
@@ -16,6 +17,7 @@ export const Route = createFileRoute("/dashboard/posts/$postId")({
         return { post, author, comments };
     },
     component: RouteComponent,
+    pendingComponent: PostDetailSkeleton,
 });
 
 function RouteComponent() {
