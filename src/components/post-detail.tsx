@@ -25,9 +25,7 @@ export default function PostDetail({ post, author, comments, backLink }: PostDet
 
             <article className="mt-4 rounded-xl border border-neutral-200 bg-white p-6">
                 <span className="text-xs font-medium text-neutral-400">Post #{post.id}</span>
-                <h1 className="mt-1 text-2xl font-semibold capitalize text-neutral-900">
-                    {post.title}
-                </h1>
+                <h1 className="mt-1 text-2xl font-semibold capitalize text-neutral-900">{post.title}</h1>
 
                 <Link
                     to="/dashboard/users/$userId"
@@ -41,9 +39,7 @@ export default function PostDetail({ post, author, comments, backLink }: PostDet
                         <span className="block truncate text-sm font-medium text-neutral-900 group-hover:underline">
                             {author.name}
                         </span>
-                        <span className="block truncate text-xs text-neutral-500">
-                            {author.email}
-                        </span>
+                        <span className="block truncate text-xs text-neutral-500">{author.email}</span>
                     </span>
                 </Link>
 
@@ -57,10 +53,7 @@ export default function PostDetail({ post, author, comments, backLink }: PostDet
 
             <div className="space-y-3">
                 {comments.map((comment) => (
-                    <div
-                        key={comment.id}
-                        className="rounded-xl border border-neutral-200 bg-white p-5"
-                    >
+                    <div key={comment.id} className="rounded-xl border border-neutral-200 bg-white p-5">
                         <div className="flex items-baseline justify-between gap-3">
                             <p className="font-medium capitalize text-neutral-900">{comment.name}</p>
                             <span className="shrink-0 text-xs text-neutral-400">{comment.email}</span>
