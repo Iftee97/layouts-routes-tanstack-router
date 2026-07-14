@@ -8,249 +8,255 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { Route as rootRouteImport } from "./routes/__root";
-import { Route as AboutRouteImport } from "./routes/about";
-import { Route as DashboardRouteRouteImport } from "./routes/dashboard/route";
-import { Route as IndexRouteImport } from "./routes/index";
-import { Route as DashboardIndexRouteImport } from "./routes/dashboard/index";
-import { Route as DashboardTodosRouteImport } from "./routes/dashboard/todos";
-import { Route as DashboardUsersIndexRouteImport } from "./routes/dashboard/users/index";
-import { Route as DashboardPostsIndexRouteImport } from "./routes/dashboard/posts/index";
-import { Route as DashboardPostsPostIdRouteImport } from "./routes/dashboard/posts/$postId";
-import { Route as DashboardUsersUserIdIndexRouteImport } from "./routes/dashboard/users/$userId/index";
-import { Route as DashboardUsersUserIdPostsPostIdRouteImport } from "./routes/dashboard/users/$userId/posts/$postId";
+import { Route as rootRouteImport } from './routes/__root'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as DashboardRouteRouteImport } from './routes/dashboard/route'
+import { Route as IndexRouteImport } from './routes/index'
+import { Route as DashboardIndexRouteImport } from './routes/dashboard/index'
+import { Route as DashboardTodosRouteImport } from './routes/dashboard/todos'
+import { Route as DashboardUsersIndexRouteImport } from './routes/dashboard/users/index'
+import { Route as DashboardPostsIndexRouteImport } from './routes/dashboard/posts/index'
+import { Route as DashboardPostsPostIdRouteImport } from './routes/dashboard/posts/$postId'
+import { Route as DashboardUsersUserIdIndexRouteImport } from './routes/dashboard/users/$userId/index'
+import { Route as DashboardUsersUserIdPostsPostIdRouteImport } from './routes/dashboard/users/$userId/posts/$postId'
 
 const AboutRoute = AboutRouteImport.update({
-    id: "/about",
-    path: "/about",
-    getParentRoute: () => rootRouteImport,
-} as any);
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DashboardRouteRoute = DashboardRouteRouteImport.update({
-    id: "/dashboard",
-    path: "/dashboard",
-    getParentRoute: () => rootRouteImport,
-} as any);
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
-    id: "/",
-    path: "/",
-    getParentRoute: () => rootRouteImport,
-} as any);
+  id: '/',
+  path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DashboardIndexRoute = DashboardIndexRouteImport.update({
-    id: "/",
-    path: "/",
-    getParentRoute: () => DashboardRouteRoute,
-} as any);
+  id: '/',
+  path: '/',
+  getParentRoute: () => DashboardRouteRoute,
+} as any)
 const DashboardTodosRoute = DashboardTodosRouteImport.update({
-    id: "/todos",
-    path: "/todos",
-    getParentRoute: () => DashboardRouteRoute,
-} as any);
+  id: '/todos',
+  path: '/todos',
+  getParentRoute: () => DashboardRouteRoute,
+} as any)
 const DashboardUsersIndexRoute = DashboardUsersIndexRouteImport.update({
-    id: "/users/",
-    path: "/users/",
-    getParentRoute: () => DashboardRouteRoute,
-} as any);
+  id: '/users/',
+  path: '/users/',
+  getParentRoute: () => DashboardRouteRoute,
+} as any)
 const DashboardPostsIndexRoute = DashboardPostsIndexRouteImport.update({
-    id: "/posts/",
-    path: "/posts/",
-    getParentRoute: () => DashboardRouteRoute,
-} as any);
+  id: '/posts/',
+  path: '/posts/',
+  getParentRoute: () => DashboardRouteRoute,
+} as any)
 const DashboardPostsPostIdRoute = DashboardPostsPostIdRouteImport.update({
-    id: "/posts/$postId",
-    path: "/posts/$postId",
+  id: '/posts/$postId',
+  path: '/posts/$postId',
+  getParentRoute: () => DashboardRouteRoute,
+} as any)
+const DashboardUsersUserIdIndexRoute =
+  DashboardUsersUserIdIndexRouteImport.update({
+    id: '/users/$userId/',
+    path: '/users/$userId/',
     getParentRoute: () => DashboardRouteRoute,
-} as any);
-const DashboardUsersUserIdIndexRoute = DashboardUsersUserIdIndexRouteImport.update({
-    id: "/users/$userId/",
-    path: "/users/$userId/",
+  } as any)
+const DashboardUsersUserIdPostsPostIdRoute =
+  DashboardUsersUserIdPostsPostIdRouteImport.update({
+    id: '/users/$userId/posts/$postId',
+    path: '/users/$userId/posts/$postId',
     getParentRoute: () => DashboardRouteRoute,
-} as any);
-const DashboardUsersUserIdPostsPostIdRoute = DashboardUsersUserIdPostsPostIdRouteImport.update({
-    id: "/users/$userId/posts/$postId",
-    path: "/users/$userId/posts/$postId",
-    getParentRoute: () => DashboardRouteRoute,
-} as any);
+  } as any)
 
 export interface FileRoutesByFullPath {
-    "/": typeof IndexRoute;
-    "/dashboard": typeof DashboardRouteRouteWithChildren;
-    "/about": typeof AboutRoute;
-    "/dashboard/todos": typeof DashboardTodosRoute;
-    "/dashboard/": typeof DashboardIndexRoute;
-    "/dashboard/posts/$postId": typeof DashboardPostsPostIdRoute;
-    "/dashboard/posts/": typeof DashboardPostsIndexRoute;
-    "/dashboard/users/": typeof DashboardUsersIndexRoute;
-    "/dashboard/users/$userId/": typeof DashboardUsersUserIdIndexRoute;
-    "/dashboard/users/$userId/posts/$postId": typeof DashboardUsersUserIdPostsPostIdRoute;
+  '/': typeof IndexRoute
+  '/dashboard': typeof DashboardRouteRouteWithChildren
+  '/about': typeof AboutRoute
+  '/dashboard/todos': typeof DashboardTodosRoute
+  '/dashboard/': typeof DashboardIndexRoute
+  '/dashboard/posts/$postId': typeof DashboardPostsPostIdRoute
+  '/dashboard/posts/': typeof DashboardPostsIndexRoute
+  '/dashboard/users/': typeof DashboardUsersIndexRoute
+  '/dashboard/users/$userId/': typeof DashboardUsersUserIdIndexRoute
+  '/dashboard/users/$userId/posts/$postId': typeof DashboardUsersUserIdPostsPostIdRoute
 }
 export interface FileRoutesByTo {
-    "/": typeof IndexRoute;
-    "/about": typeof AboutRoute;
-    "/dashboard/todos": typeof DashboardTodosRoute;
-    "/dashboard": typeof DashboardIndexRoute;
-    "/dashboard/posts/$postId": typeof DashboardPostsPostIdRoute;
-    "/dashboard/posts": typeof DashboardPostsIndexRoute;
-    "/dashboard/users": typeof DashboardUsersIndexRoute;
-    "/dashboard/users/$userId": typeof DashboardUsersUserIdIndexRoute;
-    "/dashboard/users/$userId/posts/$postId": typeof DashboardUsersUserIdPostsPostIdRoute;
+  '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/dashboard/todos': typeof DashboardTodosRoute
+  '/dashboard': typeof DashboardIndexRoute
+  '/dashboard/posts/$postId': typeof DashboardPostsPostIdRoute
+  '/dashboard/posts': typeof DashboardPostsIndexRoute
+  '/dashboard/users': typeof DashboardUsersIndexRoute
+  '/dashboard/users/$userId': typeof DashboardUsersUserIdIndexRoute
+  '/dashboard/users/$userId/posts/$postId': typeof DashboardUsersUserIdPostsPostIdRoute
 }
 export interface FileRoutesById {
-    __root__: typeof rootRouteImport;
-    "/": typeof IndexRoute;
-    "/dashboard": typeof DashboardRouteRouteWithChildren;
-    "/about": typeof AboutRoute;
-    "/dashboard/todos": typeof DashboardTodosRoute;
-    "/dashboard/": typeof DashboardIndexRoute;
-    "/dashboard/posts/$postId": typeof DashboardPostsPostIdRoute;
-    "/dashboard/posts/": typeof DashboardPostsIndexRoute;
-    "/dashboard/users/": typeof DashboardUsersIndexRoute;
-    "/dashboard/users/$userId/": typeof DashboardUsersUserIdIndexRoute;
-    "/dashboard/users/$userId/posts/$postId": typeof DashboardUsersUserIdPostsPostIdRoute;
+  __root__: typeof rootRouteImport
+  '/': typeof IndexRoute
+  '/dashboard': typeof DashboardRouteRouteWithChildren
+  '/about': typeof AboutRoute
+  '/dashboard/todos': typeof DashboardTodosRoute
+  '/dashboard/': typeof DashboardIndexRoute
+  '/dashboard/posts/$postId': typeof DashboardPostsPostIdRoute
+  '/dashboard/posts/': typeof DashboardPostsIndexRoute
+  '/dashboard/users/': typeof DashboardUsersIndexRoute
+  '/dashboard/users/$userId/': typeof DashboardUsersUserIdIndexRoute
+  '/dashboard/users/$userId/posts/$postId': typeof DashboardUsersUserIdPostsPostIdRoute
 }
 export interface FileRouteTypes {
-    fileRoutesByFullPath: FileRoutesByFullPath;
-    fullPaths:
-        | "/"
-        | "/dashboard"
-        | "/about"
-        | "/dashboard/todos"
-        | "/dashboard/"
-        | "/dashboard/posts/$postId"
-        | "/dashboard/posts/"
-        | "/dashboard/users/"
-        | "/dashboard/users/$userId/"
-        | "/dashboard/users/$userId/posts/$postId";
-    fileRoutesByTo: FileRoutesByTo;
-    to:
-        | "/"
-        | "/about"
-        | "/dashboard/todos"
-        | "/dashboard"
-        | "/dashboard/posts/$postId"
-        | "/dashboard/posts"
-        | "/dashboard/users"
-        | "/dashboard/users/$userId"
-        | "/dashboard/users/$userId/posts/$postId";
-    id:
-        | "__root__"
-        | "/"
-        | "/dashboard"
-        | "/about"
-        | "/dashboard/todos"
-        | "/dashboard/"
-        | "/dashboard/posts/$postId"
-        | "/dashboard/posts/"
-        | "/dashboard/users/"
-        | "/dashboard/users/$userId/"
-        | "/dashboard/users/$userId/posts/$postId";
-    fileRoutesById: FileRoutesById;
+  fileRoutesByFullPath: FileRoutesByFullPath
+  fullPaths:
+    | '/'
+    | '/dashboard'
+    | '/about'
+    | '/dashboard/todos'
+    | '/dashboard/'
+    | '/dashboard/posts/$postId'
+    | '/dashboard/posts/'
+    | '/dashboard/users/'
+    | '/dashboard/users/$userId/'
+    | '/dashboard/users/$userId/posts/$postId'
+  fileRoutesByTo: FileRoutesByTo
+  to:
+    | '/'
+    | '/about'
+    | '/dashboard/todos'
+    | '/dashboard'
+    | '/dashboard/posts/$postId'
+    | '/dashboard/posts'
+    | '/dashboard/users'
+    | '/dashboard/users/$userId'
+    | '/dashboard/users/$userId/posts/$postId'
+  id:
+    | '__root__'
+    | '/'
+    | '/dashboard'
+    | '/about'
+    | '/dashboard/todos'
+    | '/dashboard/'
+    | '/dashboard/posts/$postId'
+    | '/dashboard/posts/'
+    | '/dashboard/users/'
+    | '/dashboard/users/$userId/'
+    | '/dashboard/users/$userId/posts/$postId'
+  fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-    IndexRoute: typeof IndexRoute;
-    DashboardRouteRoute: typeof DashboardRouteRouteWithChildren;
-    AboutRoute: typeof AboutRoute;
+  IndexRoute: typeof IndexRoute
+  DashboardRouteRoute: typeof DashboardRouteRouteWithChildren
+  AboutRoute: typeof AboutRoute
 }
 
-declare module "@tanstack/react-router" {
-    interface FileRoutesByPath {
-        "/about": {
-            id: "/about";
-            path: "/about";
-            fullPath: "/about";
-            preLoaderRoute: typeof AboutRouteImport;
-            parentRoute: typeof rootRouteImport;
-        };
-        "/dashboard": {
-            id: "/dashboard";
-            path: "/dashboard";
-            fullPath: "/dashboard";
-            preLoaderRoute: typeof DashboardRouteRouteImport;
-            parentRoute: typeof rootRouteImport;
-        };
-        "/": {
-            id: "/";
-            path: "/";
-            fullPath: "/";
-            preLoaderRoute: typeof IndexRouteImport;
-            parentRoute: typeof rootRouteImport;
-        };
-        "/dashboard/": {
-            id: "/dashboard/";
-            path: "/";
-            fullPath: "/dashboard/";
-            preLoaderRoute: typeof DashboardIndexRouteImport;
-            parentRoute: typeof DashboardRouteRoute;
-        };
-        "/dashboard/todos": {
-            id: "/dashboard/todos";
-            path: "/todos";
-            fullPath: "/dashboard/todos";
-            preLoaderRoute: typeof DashboardTodosRouteImport;
-            parentRoute: typeof DashboardRouteRoute;
-        };
-        "/dashboard/users/": {
-            id: "/dashboard/users/";
-            path: "/users";
-            fullPath: "/dashboard/users/";
-            preLoaderRoute: typeof DashboardUsersIndexRouteImport;
-            parentRoute: typeof DashboardRouteRoute;
-        };
-        "/dashboard/posts/": {
-            id: "/dashboard/posts/";
-            path: "/posts";
-            fullPath: "/dashboard/posts/";
-            preLoaderRoute: typeof DashboardPostsIndexRouteImport;
-            parentRoute: typeof DashboardRouteRoute;
-        };
-        "/dashboard/posts/$postId": {
-            id: "/dashboard/posts/$postId";
-            path: "/posts/$postId";
-            fullPath: "/dashboard/posts/$postId";
-            preLoaderRoute: typeof DashboardPostsPostIdRouteImport;
-            parentRoute: typeof DashboardRouteRoute;
-        };
-        "/dashboard/users/$userId/": {
-            id: "/dashboard/users/$userId/";
-            path: "/users/$userId";
-            fullPath: "/dashboard/users/$userId/";
-            preLoaderRoute: typeof DashboardUsersUserIdIndexRouteImport;
-            parentRoute: typeof DashboardRouteRoute;
-        };
-        "/dashboard/users/$userId/posts/$postId": {
-            id: "/dashboard/users/$userId/posts/$postId";
-            path: "/users/$userId/posts/$postId";
-            fullPath: "/dashboard/users/$userId/posts/$postId";
-            preLoaderRoute: typeof DashboardUsersUserIdPostsPostIdRouteImport;
-            parentRoute: typeof DashboardRouteRoute;
-        };
+declare module '@tanstack/react-router' {
+  interface FileRoutesByPath {
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
     }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard/': {
+      id: '/dashboard/'
+      path: '/'
+      fullPath: '/dashboard/'
+      preLoaderRoute: typeof DashboardIndexRouteImport
+      parentRoute: typeof DashboardRouteRoute
+    }
+    '/dashboard/todos': {
+      id: '/dashboard/todos'
+      path: '/todos'
+      fullPath: '/dashboard/todos'
+      preLoaderRoute: typeof DashboardTodosRouteImport
+      parentRoute: typeof DashboardRouteRoute
+    }
+    '/dashboard/users/': {
+      id: '/dashboard/users/'
+      path: '/users'
+      fullPath: '/dashboard/users/'
+      preLoaderRoute: typeof DashboardUsersIndexRouteImport
+      parentRoute: typeof DashboardRouteRoute
+    }
+    '/dashboard/posts/': {
+      id: '/dashboard/posts/'
+      path: '/posts'
+      fullPath: '/dashboard/posts/'
+      preLoaderRoute: typeof DashboardPostsIndexRouteImport
+      parentRoute: typeof DashboardRouteRoute
+    }
+    '/dashboard/posts/$postId': {
+      id: '/dashboard/posts/$postId'
+      path: '/posts/$postId'
+      fullPath: '/dashboard/posts/$postId'
+      preLoaderRoute: typeof DashboardPostsPostIdRouteImport
+      parentRoute: typeof DashboardRouteRoute
+    }
+    '/dashboard/users/$userId/': {
+      id: '/dashboard/users/$userId/'
+      path: '/users/$userId'
+      fullPath: '/dashboard/users/$userId/'
+      preLoaderRoute: typeof DashboardUsersUserIdIndexRouteImport
+      parentRoute: typeof DashboardRouteRoute
+    }
+    '/dashboard/users/$userId/posts/$postId': {
+      id: '/dashboard/users/$userId/posts/$postId'
+      path: '/users/$userId/posts/$postId'
+      fullPath: '/dashboard/users/$userId/posts/$postId'
+      preLoaderRoute: typeof DashboardUsersUserIdPostsPostIdRouteImport
+      parentRoute: typeof DashboardRouteRoute
+    }
+  }
 }
 
 interface DashboardRouteRouteChildren {
-    DashboardTodosRoute: typeof DashboardTodosRoute;
-    DashboardIndexRoute: typeof DashboardIndexRoute;
-    DashboardPostsPostIdRoute: typeof DashboardPostsPostIdRoute;
-    DashboardPostsIndexRoute: typeof DashboardPostsIndexRoute;
-    DashboardUsersIndexRoute: typeof DashboardUsersIndexRoute;
-    DashboardUsersUserIdIndexRoute: typeof DashboardUsersUserIdIndexRoute;
-    DashboardUsersUserIdPostsPostIdRoute: typeof DashboardUsersUserIdPostsPostIdRoute;
+  DashboardTodosRoute: typeof DashboardTodosRoute
+  DashboardIndexRoute: typeof DashboardIndexRoute
+  DashboardPostsPostIdRoute: typeof DashboardPostsPostIdRoute
+  DashboardPostsIndexRoute: typeof DashboardPostsIndexRoute
+  DashboardUsersIndexRoute: typeof DashboardUsersIndexRoute
+  DashboardUsersUserIdIndexRoute: typeof DashboardUsersUserIdIndexRoute
+  DashboardUsersUserIdPostsPostIdRoute: typeof DashboardUsersUserIdPostsPostIdRoute
 }
 
 const DashboardRouteRouteChildren: DashboardRouteRouteChildren = {
-    DashboardTodosRoute: DashboardTodosRoute,
-    DashboardIndexRoute: DashboardIndexRoute,
-    DashboardPostsPostIdRoute: DashboardPostsPostIdRoute,
-    DashboardPostsIndexRoute: DashboardPostsIndexRoute,
-    DashboardUsersIndexRoute: DashboardUsersIndexRoute,
-    DashboardUsersUserIdIndexRoute: DashboardUsersUserIdIndexRoute,
-    DashboardUsersUserIdPostsPostIdRoute: DashboardUsersUserIdPostsPostIdRoute,
-};
+  DashboardTodosRoute: DashboardTodosRoute,
+  DashboardIndexRoute: DashboardIndexRoute,
+  DashboardPostsPostIdRoute: DashboardPostsPostIdRoute,
+  DashboardPostsIndexRoute: DashboardPostsIndexRoute,
+  DashboardUsersIndexRoute: DashboardUsersIndexRoute,
+  DashboardUsersUserIdIndexRoute: DashboardUsersUserIdIndexRoute,
+  DashboardUsersUserIdPostsPostIdRoute: DashboardUsersUserIdPostsPostIdRoute,
+}
 
-const DashboardRouteRouteWithChildren = DashboardRouteRoute._addFileChildren(DashboardRouteRouteChildren);
+const DashboardRouteRouteWithChildren = DashboardRouteRoute._addFileChildren(
+  DashboardRouteRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
-    IndexRoute: IndexRoute,
-    DashboardRouteRoute: DashboardRouteRouteWithChildren,
-    AboutRoute: AboutRoute,
-};
-export const routeTree = rootRouteImport._addFileChildren(rootRouteChildren)._addFileTypes<FileRouteTypes>();
+  IndexRoute: IndexRoute,
+  DashboardRouteRoute: DashboardRouteRouteWithChildren,
+  AboutRoute: AboutRoute,
+}
+export const routeTree = rootRouteImport
+  ._addFileChildren(rootRouteChildren)
+  ._addFileTypes<FileRouteTypes>()

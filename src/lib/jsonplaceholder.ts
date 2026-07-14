@@ -1,3 +1,5 @@
+import { isLocal, sleep } from "./utils";
+
 const BASE_URL = "https://jsonplaceholder.typicode.com";
 
 export type User = {
@@ -34,10 +36,12 @@ export type Comment = {
 };
 
 async function getJson<T>(path: string): Promise<T> {
+    isLocal && (await sleep(1500));
+
     const res = await fetch(`${BASE_URL}${path}`);
-    if (!res.ok) {
-        throw new Error(`JSONPlaceholder request failed (${res.status}): ${path}`);
-    }
+
+    if (!res.ok) throw new Error(`JSONPlaceholder request failed (${res.status}): ${path}`);
+
     return res.json() as Promise<T>;
 }
 
