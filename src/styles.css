@@ -2,6 +2,7 @@
 
 * {
     box-sizing: border-box;
+    --font-mono: monospace;
 }
 
 html,
@@ -12,4 +13,5 @@ body,
 
 body {
     margin: 0;
+    font-family: var(--font-mono);
 }

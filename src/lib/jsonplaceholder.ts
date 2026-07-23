@@ -36,7 +36,7 @@ export type Comment = {
 };
 
 async function getJson<T>(path: string): Promise<T> {
-    isLocal && (await sleep(1500));
+    isLocal && (await sleep(750));
 
     const res = await fetch(`${BASE_URL}${path}`);
 
