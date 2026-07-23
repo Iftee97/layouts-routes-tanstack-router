@@ -4,9 +4,7 @@ import Skeleton from "#/components/skeleton";
 
 export default function PostDetailSkeleton() {
     return (
-        <div
-        // className="max-w-3xl"
-        >
+        <div>
             <Skeleton className="h-4 w-28" />
 
             <div className="mt-4 rounded-xl border border-neutral-200 bg-white p-6">
