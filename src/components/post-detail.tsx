@@ -21,7 +21,9 @@ function initials(name: string) {
 
 export default function PostDetail({ post, author, comments, backLink }: PostDetailProps) {
     return (
-        <div className="max-w-3xl">
+        <div
+        // className="max-w-3xl"
+        >
             {backLink}
 
             <article className="mt-4 rounded-xl border border-neutral-200 bg-white p-6">

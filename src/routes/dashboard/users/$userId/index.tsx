@@ -22,7 +22,9 @@ function RouteComponent() {
     const { user, posts } = Route.useLoaderData();
 
     return (
-        <div className="max-w-3xl">
+        <div
+        // className="max-w-3xl"
+        >
             <Link
                 to="/dashboard/users"
                 className="inline-flex items-center gap-1.5 text-sm font-medium text-neutral-500 transition-colors hover:text-neutral-900"
@@ -86,7 +88,9 @@ function RouteComponent() {
 
 function PendingComponent() {
     return (
-        <div className="max-w-3xl">
+        <div
+        // className="max-w-3xl"
+        >
             <Skeleton className="h-4 w-28" />
 
             <div className="mt-4 rounded-xl border border-neutral-200 bg-white p-6">
