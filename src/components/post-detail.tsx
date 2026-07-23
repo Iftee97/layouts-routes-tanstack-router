@@ -1,5 +1,6 @@
-import type { ReactNode } from "react";
+import { Fragment, type ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
+
 import type { Comment, Post, User } from "#/lib/jsonplaceholder";
 
 type PostDetailProps = {
@@ -53,13 +54,15 @@ export default function PostDetail({ post, author, comments, backLink }: PostDet
 
             <div className="space-y-3">
                 {comments.map((comment) => (
-                    <div key={comment.id} className="rounded-xl border border-neutral-200 bg-white p-5">
-                        <div className="flex items-baseline justify-between gap-3">
-                            <p className="font-medium capitalize text-neutral-900">{comment.name}</p>
-                            <span className="shrink-0 text-xs text-neutral-400">{comment.email}</span>
+                    <Fragment key={comment.id}>
+                        <div className="rounded-xl border border-neutral-200 bg-white p-5">
+                            <div className="flex items-baseline justify-between gap-3">
+                                <p className="font-medium capitalize text-neutral-900">{comment.name}</p>
+                                <span className="shrink-0 text-xs text-neutral-400">{comment.email}</span>
+                            </div>
+                            <p className="mt-2 text-sm leading-relaxed text-neutral-600">{comment.body}</p>
                         </div>
-                        <p className="mt-2 text-sm leading-relaxed text-neutral-600">{comment.body}</p>
-                    </div>
+                    </Fragment>
                 ))}
             </div>
         </div>

@@ -1,6 +1,7 @@
+import { Fragment } from "react/jsx-runtime";
 import { createFileRoute } from "@tanstack/react-router";
-import { Check } from "lucide-react";
 
+import { Check } from "lucide-react";
 import Skeleton from "#/components/skeleton";
 
 import { fetchTodos } from "#/lib/jsonplaceholder";
@@ -27,22 +28,24 @@ function RouteComponent() {
 
             <ul className="divide-y divide-neutral-200 overflow-hidden rounded-xl border border-neutral-200 bg-white">
                 {todos.map((todo) => (
-                    <li key={todo.id} className="flex items-center gap-3 px-4 py-3">
-                        <span
-                            className={`grid size-5 shrink-0 place-items-center rounded-md border ${
-                                todo.completed ? "border-green-600 bg-green-600 text-white" : "border-neutral-300"
-                            }`}
-                        >
-                            {todo.completed && <Check className="size-3.5" />}
-                        </span>
-                        <span
-                            className={`text-sm ${
-                                todo.completed ? "text-neutral-400 line-through" : "text-neutral-700"
-                            }`}
-                        >
-                            {todo.title}
-                        </span>
-                    </li>
+                    <Fragment key={todo.id}>
+                        <li className="flex items-center gap-3 px-4 py-3">
+                            <span
+                                className={`grid size-5 shrink-0 place-items-center rounded-md border ${
+                                    todo.completed ? "border-green-600 bg-green-600 text-white" : "border-neutral-300"
+                                }`}
+                            >
+                                {todo.completed && <Check className="size-3.5" />}
+                            </span>
+                            <span
+                                className={`text-sm ${
+                                    todo.completed ? "text-neutral-400 line-through" : "text-neutral-700"
+                                }`}
+                            >
+                                {todo.title}
+                            </span>
+                        </li>
+                    </Fragment>
                 ))}
             </ul>
         </div>
@@ -59,10 +62,12 @@ function PendingComponent() {
 
             <ul className="divide-y divide-neutral-200 overflow-hidden rounded-xl border border-neutral-200 bg-white">
                 {Array.from({ length: 8 }).map((_, i) => (
-                    <li key={i} className="flex items-center gap-3 px-4 py-3">
-                        <Skeleton className="size-5 shrink-0 rounded-md" />
-                        <Skeleton className="h-4 w-2/3" />
-                    </li>
+                    <Fragment key={i}>
+                        <li className="flex items-center gap-3 px-4 py-3">
+                            <Skeleton className="size-5 shrink-0 rounded-md" />
+                            <Skeleton className="h-4 w-2/3" />
+                        </li>
+                    </Fragment>
                 ))}
             </ul>
         </div>

@@ -1,7 +1,7 @@
+import { Fragment } from "react/jsx-runtime";
 import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { ArrowLeft, Building2, Globe, Mail, MapPin, Phone } from "lucide-react";
-
 import Skeleton from "#/components/skeleton";
 
 import { fetchPostsByUser, fetchUser } from "#/lib/jsonplaceholder";
@@ -66,17 +66,18 @@ function RouteComponent() {
 
             <div className="space-y-3">
                 {posts.map((post) => (
-                    <Link
-                        key={post.id}
-                        to="/dashboard/users/$userId/posts/$postId"
-                        params={{ userId: String(user.id), postId: String(post.id) }}
-                        className="group block rounded-xl border border-neutral-200 bg-white p-5 transition-colors hover:border-neutral-400"
-                    >
-                        <h3 className="font-semibold capitalize text-neutral-900 group-hover:underline">
-                            {post.title}
-                        </h3>
-                        <p className="mt-1 line-clamp-2 text-sm text-neutral-600">{post.body}</p>
-                    </Link>
+                    <Fragment key={post.id}>
+                        <Link
+                            to="/dashboard/users/$userId/posts/$postId"
+                            params={{ userId: String(user.id), postId: String(post.id) }}
+                            className="group block rounded-xl border border-neutral-200 bg-white p-5 transition-colors hover:border-neutral-400"
+                        >
+                            <h3 className="font-semibold capitalize text-neutral-900 group-hover:underline">
+                                {post.title}
+                            </h3>
+                            <p className="mt-1 line-clamp-2 text-sm text-neutral-600">{post.body}</p>
+                        </Link>
+                    </Fragment>
                 ))}
             </div>
         </div>
@@ -94,10 +95,12 @@ function PendingComponent() {
 
                 <dl className="mt-5 grid gap-3 sm:grid-cols-2">
                     {[Mail, Phone, Globe, MapPin, Building2].map((Icon, i) => (
-                        <div key={i} className="flex items-center gap-2">
-                            <Icon className="size-4 shrink-0 text-neutral-300" />
-                            <Skeleton className="h-3.5 w-40" />
-                        </div>
+                        <Fragment key={i}>
+                            <div className="flex items-center gap-2">
+                                <Icon className="size-4 shrink-0 text-neutral-300" />
+                                <Skeleton className="h-3.5 w-40" />
+                            </div>
+                        </Fragment>
                     ))}
                 </dl>
             </div>
@@ -106,11 +109,13 @@ function PendingComponent() {
 
             <div className="space-y-3">
                 {Array.from({ length: 4 }).map((_, i) => (
-                    <div key={i} className="rounded-xl border border-neutral-200 bg-white p-5">
-                        <Skeleton className="h-5 w-3/4" />
-                        <Skeleton className="mt-2 h-4 w-full" />
-                        <Skeleton className="mt-1.5 h-4 w-2/3" />
-                    </div>
+                    <Fragment key={i}>
+                        <div className="rounded-xl border border-neutral-200 bg-white p-5">
+                            <Skeleton className="h-5 w-3/4" />
+                            <Skeleton className="mt-2 h-4 w-full" />
+                            <Skeleton className="mt-1.5 h-4 w-2/3" />
+                        </div>
+                    </Fragment>
                 ))}
             </div>
         </div>
