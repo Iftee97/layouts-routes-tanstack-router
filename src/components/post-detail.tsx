@@ -7,7 +7,7 @@ import type { Comment, Post, User } from "#/lib/jsonplaceholder";
 type PostDetailProps = {
     post: Post;
     author: User;
-    comments: Promise<Comment[]>;
+    commentsPromise: Promise<Comment[]>;
     backLink: ReactNode;
 };
 
@@ -20,7 +20,7 @@ function initials(name: string) {
         .toUpperCase();
 }
 
-export default function PostDetail({ post, author, comments, backLink }: PostDetailProps) {
+export default function PostDetail({ post, author, commentsPromise, backLink }: PostDetailProps) {
     return (
         <div>
             {backLink}
@@ -48,8 +48,8 @@ export default function PostDetail({ post, author, comments, backLink }: PostDet
                 <p className="mt-5 leading-relaxed text-neutral-700">{post.body}</p>
             </article>
 
-            <Await promise={comments} fallback={<CommentsSkeleton />}>
-                {(resolved) => <CommentList comments={resolved} />}
+            <Await promise={commentsPromise} fallback={<CommentsSkeleton />}>
+                {(resolvedComments) => <CommentList comments={resolvedComments} />}
             </Await>
         </div>
     );

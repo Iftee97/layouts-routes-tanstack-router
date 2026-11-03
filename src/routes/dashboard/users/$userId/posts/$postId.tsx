@@ -10,19 +10,19 @@ export const Route = createFileRoute("/dashboard/users/$userId/posts/$postId")({
     loader: async ({ params }) => {
         const postId = Number(params.postId);
 
-        const comments = fetchPostComments(postId);
+        const commentsPromise = fetchPostComments(postId);
 
         const post = await fetchPost(postId);
         const author = await fetchUser(post.userId);
 
-        return { post, author, comments };
+        return { post, author, commentsPromise };
     },
     component: RouteComponent,
     pendingComponent: PostDetailSkeleton,
 });
 
 function RouteComponent() {
-    const { post, author, comments } = Route.useLoaderData();
+    const { post, author, commentsPromise } = Route.useLoaderData();
 
     const { userId } = Route.useParams();
 
@@ -30,7 +30,7 @@ function RouteComponent() {
         <PostDetail
             post={post}
             author={author}
-            comments={comments}
+            commentsPromise={commentsPromise}
             backLink={
                 <Link
                     to="/dashboard/users/$userId"
