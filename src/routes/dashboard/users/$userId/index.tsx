@@ -1,25 +1,27 @@
 import { Fragment } from "react/jsx-runtime";
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Await, createFileRoute, Link } from "@tanstack/react-router";
 
 import { ArrowLeft, Building2, Globe, Mail, MapPin, Phone } from "lucide-react";
 import Skeleton from "#/components/skeleton";
 
-import { fetchPostsByUser, fetchUser } from "#/lib/jsonplaceholder";
+import { fetchPostsByUser, fetchUser, type Post, type User } from "#/lib/jsonplaceholder";
 
 export const Route = createFileRoute("/dashboard/users/$userId/")({
     loader: async ({ params }) => {
         const userId = Number(params.userId);
 
-        const [user, posts] = await Promise.all([fetchUser(userId), fetchPostsByUser(userId)]);
+        const postsPromise = fetchPostsByUser(userId);
 
-        return { user, posts };
+        const user = await fetchUser(userId);
+
+        return { user, postsPromise };
     },
     component: RouteComponent,
     pendingComponent: PendingComponent,
 });
 
 function RouteComponent() {
-    const { user, posts } = Route.useLoaderData();
+    const { user, postsPromise } = Route.useLoaderData();
 
     return (
         <div>
@@ -59,6 +61,16 @@ function RouteComponent() {
                 </dl>
             </div>
 
+            <Await promise={postsPromise} fallback={<UserPostsSkeleton />}>
+                {(posts) => <UserPostList user={user} posts={posts} />}
+            </Await>
+        </div>
+    );
+}
+
+function UserPostList({ user, posts }: { user: User; posts: Post[] }) {
+    return (
+        <>
             <h2 className="mb-3 mt-8 text-lg font-semibold text-neutral-900">
                 Posts by {user.name}
                 <span className="ml-2 text-sm font-normal text-neutral-500">({posts.length})</span>
@@ -80,7 +92,7 @@ function RouteComponent() {
                     </Fragment>
                 ))}
             </div>
-        </div>
+        </>
     );
 }
 
@@ -105,6 +117,14 @@ function PendingComponent() {
                 </dl>
             </div>
 
+            <UserPostsSkeleton />
+        </div>
+    );
+}
+
+function UserPostsSkeleton() {
+    return (
+        <>
             <Skeleton className="mb-3 mt-8 h-6 w-48" />
 
             <div className="space-y-3">
@@ -118,6 +138,6 @@ function PendingComponent() {
                     </Fragment>
                 ))}
             </div>
-        </div>
+        </>
     );
 }

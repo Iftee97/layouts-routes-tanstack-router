@@ -51,5 +51,5 @@ export const fetchTodos = () => getJson<Todo[]>("/todos?_limit=20");
 
 export const fetchUser = (id: number) => getJson<User>(`/users/${id}`);
 export const fetchPost = (id: number) => getJson<Post>(`/posts/${id}`);
-export const fetchPostsByUser = (userId: number) => getJson<Post[]>(`/posts?userId=${userId}`);
+export const fetchPostsByUser = (userId: number) => getJson<Post[]>(`/posts?userId=${userId}`, 2000);
 export const fetchPostComments = (postId: number) => getJson<Comment[]>(`/posts/${postId}/comments`, 2500);
