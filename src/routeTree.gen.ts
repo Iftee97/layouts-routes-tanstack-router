@@ -13,8 +13,8 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as DashboardRouteRouteImport } from './routes/dashboard/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DashboardIndexRouteImport } from './routes/dashboard/index'
-import { Route as DashboardTodosRouteImport } from './routes/dashboard/todos'
 import { Route as DashboardUsersIndexRouteImport } from './routes/dashboard/users/index'
+import { Route as DashboardTodosIndexRouteImport } from './routes/dashboard/todos/index'
 import { Route as DashboardPostsIndexRouteImport } from './routes/dashboard/posts/index'
 import { Route as DashboardPostsPostIdRouteImport } from './routes/dashboard/posts/$postId'
 import { Route as DashboardUsersUserIdIndexRouteImport } from './routes/dashboard/users/$userId/index'
@@ -40,14 +40,14 @@ const DashboardIndexRoute = DashboardIndexRouteImport.update({
   path: '/',
   getParentRoute: () => DashboardRouteRoute,
 } as any)
-const DashboardTodosRoute = DashboardTodosRouteImport.update({
-  id: '/todos',
-  path: '/todos',
-  getParentRoute: () => DashboardRouteRoute,
-} as any)
 const DashboardUsersIndexRoute = DashboardUsersIndexRouteImport.update({
   id: '/users/',
   path: '/users/',
+  getParentRoute: () => DashboardRouteRoute,
+} as any)
+const DashboardTodosIndexRoute = DashboardTodosIndexRouteImport.update({
+  id: '/todos/',
+  path: '/todos/',
   getParentRoute: () => DashboardRouteRoute,
 } as any)
 const DashboardPostsIndexRoute = DashboardPostsIndexRouteImport.update({
@@ -77,10 +77,10 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRouteRouteWithChildren
   '/about': typeof AboutRoute
-  '/dashboard/todos': typeof DashboardTodosRoute
   '/dashboard/': typeof DashboardIndexRoute
   '/dashboard/posts/$postId': typeof DashboardPostsPostIdRoute
   '/dashboard/posts/': typeof DashboardPostsIndexRoute
+  '/dashboard/todos/': typeof DashboardTodosIndexRoute
   '/dashboard/users/': typeof DashboardUsersIndexRoute
   '/dashboard/users/$userId/': typeof DashboardUsersUserIdIndexRoute
   '/dashboard/users/$userId/posts/$postId': typeof DashboardUsersUserIdPostsPostIdRoute
@@ -88,10 +88,10 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/dashboard/todos': typeof DashboardTodosRoute
   '/dashboard': typeof DashboardIndexRoute
   '/dashboard/posts/$postId': typeof DashboardPostsPostIdRoute
   '/dashboard/posts': typeof DashboardPostsIndexRoute
+  '/dashboard/todos': typeof DashboardTodosIndexRoute
   '/dashboard/users': typeof DashboardUsersIndexRoute
   '/dashboard/users/$userId': typeof DashboardUsersUserIdIndexRoute
   '/dashboard/users/$userId/posts/$postId': typeof DashboardUsersUserIdPostsPostIdRoute
@@ -101,10 +101,10 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRouteRouteWithChildren
   '/about': typeof AboutRoute
-  '/dashboard/todos': typeof DashboardTodosRoute
   '/dashboard/': typeof DashboardIndexRoute
   '/dashboard/posts/$postId': typeof DashboardPostsPostIdRoute
   '/dashboard/posts/': typeof DashboardPostsIndexRoute
+  '/dashboard/todos/': typeof DashboardTodosIndexRoute
   '/dashboard/users/': typeof DashboardUsersIndexRoute
   '/dashboard/users/$userId/': typeof DashboardUsersUserIdIndexRoute
   '/dashboard/users/$userId/posts/$postId': typeof DashboardUsersUserIdPostsPostIdRoute
@@ -115,10 +115,10 @@ export interface FileRouteTypes {
     | '/'
     | '/dashboard'
     | '/about'
-    | '/dashboard/todos'
     | '/dashboard/'
     | '/dashboard/posts/$postId'
     | '/dashboard/posts/'
+    | '/dashboard/todos/'
     | '/dashboard/users/'
     | '/dashboard/users/$userId/'
     | '/dashboard/users/$userId/posts/$postId'
@@ -126,10 +126,10 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
-    | '/dashboard/todos'
     | '/dashboard'
     | '/dashboard/posts/$postId'
     | '/dashboard/posts'
+    | '/dashboard/todos'
     | '/dashboard/users'
     | '/dashboard/users/$userId'
     | '/dashboard/users/$userId/posts/$postId'
@@ -138,10 +138,10 @@ export interface FileRouteTypes {
     | '/'
     | '/dashboard'
     | '/about'
-    | '/dashboard/todos'
     | '/dashboard/'
     | '/dashboard/posts/$postId'
     | '/dashboard/posts/'
+    | '/dashboard/todos/'
     | '/dashboard/users/'
     | '/dashboard/users/$userId/'
     | '/dashboard/users/$userId/posts/$postId'
@@ -183,18 +183,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardIndexRouteImport
       parentRoute: typeof DashboardRouteRoute
     }
-    '/dashboard/todos': {
-      id: '/dashboard/todos'
-      path: '/todos'
-      fullPath: '/dashboard/todos'
-      preLoaderRoute: typeof DashboardTodosRouteImport
-      parentRoute: typeof DashboardRouteRoute
-    }
     '/dashboard/users/': {
       id: '/dashboard/users/'
       path: '/users'
       fullPath: '/dashboard/users/'
       preLoaderRoute: typeof DashboardUsersIndexRouteImport
+      parentRoute: typeof DashboardRouteRoute
+    }
+    '/dashboard/todos/': {
+      id: '/dashboard/todos/'
+      path: '/todos'
+      fullPath: '/dashboard/todos/'
+      preLoaderRoute: typeof DashboardTodosIndexRouteImport
       parentRoute: typeof DashboardRouteRoute
     }
     '/dashboard/posts/': {
@@ -229,20 +229,20 @@ declare module '@tanstack/react-router' {
 }
 
 interface DashboardRouteRouteChildren {
-  DashboardTodosRoute: typeof DashboardTodosRoute
   DashboardIndexRoute: typeof DashboardIndexRoute
   DashboardPostsPostIdRoute: typeof DashboardPostsPostIdRoute
   DashboardPostsIndexRoute: typeof DashboardPostsIndexRoute
+  DashboardTodosIndexRoute: typeof DashboardTodosIndexRoute
   DashboardUsersIndexRoute: typeof DashboardUsersIndexRoute
   DashboardUsersUserIdIndexRoute: typeof DashboardUsersUserIdIndexRoute
   DashboardUsersUserIdPostsPostIdRoute: typeof DashboardUsersUserIdPostsPostIdRoute
 }
 
 const DashboardRouteRouteChildren: DashboardRouteRouteChildren = {
-  DashboardTodosRoute: DashboardTodosRoute,
   DashboardIndexRoute: DashboardIndexRoute,
   DashboardPostsPostIdRoute: DashboardPostsPostIdRoute,
   DashboardPostsIndexRoute: DashboardPostsIndexRoute,
+  DashboardTodosIndexRoute: DashboardTodosIndexRoute,
   DashboardUsersIndexRoute: DashboardUsersIndexRoute,
   DashboardUsersUserIdIndexRoute: DashboardUsersUserIdIndexRoute,
   DashboardUsersUserIdPostsPostIdRoute: DashboardUsersUserIdPostsPostIdRoute,
