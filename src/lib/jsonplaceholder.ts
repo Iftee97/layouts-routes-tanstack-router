@@ -35,8 +35,8 @@ export type Comment = {
     body: string;
 };
 
-async function getJson<T>(path: string): Promise<T> {
-    isLocal && (await sleep(750));
+async function getJson<T>(path: string, devDelayMs = 750): Promise<T> {
+    isLocal && (await sleep(devDelayMs));
 
     const res = await fetch(`${BASE_URL}${path}`);
 
@@ -52,4 +52,4 @@ export const fetchTodos = () => getJson<Todo[]>("/todos?_limit=20");
 export const fetchUser = (id: number) => getJson<User>(`/users/${id}`);
 export const fetchPost = (id: number) => getJson<Post>(`/posts/${id}`);
 export const fetchPostsByUser = (userId: number) => getJson<Post[]>(`/posts?userId=${userId}`);
-export const fetchPostComments = (postId: number) => getJson<Comment[]>(`/posts/${postId}/comments`);
+export const fetchPostComments = (postId: number) => getJson<Comment[]>(`/posts/${postId}/comments`, 2500);

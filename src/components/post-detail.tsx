@@ -1,12 +1,13 @@
 import { Fragment, type ReactNode } from "react";
-import { Link } from "@tanstack/react-router";
+import { Await, Link } from "@tanstack/react-router";
 
+import CommentsSkeleton from "#/components/comments-skeleton";
 import type { Comment, Post, User } from "#/lib/jsonplaceholder";
 
 type PostDetailProps = {
     post: Post;
     author: User;
-    comments: Comment[];
+    comments: Promise<Comment[]>;
     backLink: ReactNode;
 };
 
@@ -47,6 +48,16 @@ export default function PostDetail({ post, author, comments, backLink }: PostDet
                 <p className="mt-5 leading-relaxed text-neutral-700">{post.body}</p>
             </article>
 
+            <Await promise={comments} fallback={<CommentsSkeleton />}>
+                {(resolved) => <CommentList comments={resolved} />}
+            </Await>
+        </div>
+    );
+}
+
+function CommentList({ comments }: { comments: Comment[] }) {
+    return (
+        <>
             <h2 className="mb-3 mt-8 text-lg font-semibold text-neutral-900">
                 Comments
                 <span className="ml-2 text-sm font-normal text-neutral-500">({comments.length})</span>
@@ -65,6 +76,6 @@ export default function PostDetail({ post, author, comments, backLink }: PostDet
                     </Fragment>
                 ))}
             </div>
-        </div>
+        </>
     );
 }

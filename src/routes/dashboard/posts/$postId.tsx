@@ -10,9 +10,10 @@ export const Route = createFileRoute("/dashboard/posts/$postId")({
     loader: async ({ params }) => {
         const postId = Number(params.postId);
 
-        const post = await fetchPost(postId);
+        const comments = fetchPostComments(postId);
 
-        const [author, comments] = await Promise.all([fetchUser(post.userId), fetchPostComments(postId)]);
+        const post = await fetchPost(postId);
+        const author = await fetchUser(post.userId);
 
         return { post, author, comments };
     },
